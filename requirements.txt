@@ -1,0 +1,6 @@
+# Versions under which every notebook output reproduces exactly (verified Oct 2026).
+# scikit-learn 1.8+ changes StratifiedGroupKFold shuffling and alters cell 8's subject-level results.
+numpy==2.4.6
+pandas==3.0.6
+scipy==1.15.3
+scikit-learn==1.7.2
