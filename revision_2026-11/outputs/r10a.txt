@@ -1,0 +1,83 @@
+instances 1141 clients 20 733
+Centralized    0.615 ± 0.223
+FedAvg         0.615 ± 0.219
+Local          0.628 ± 0.255
+PersonalizedFL 0.616 ± 0.254
+
+test size per client: min 5 max 40 median 10.5
+test positives min 2 negatives min 1
+
+Pair-weighted mean AUC (random hold-out):
+  Centralized    0.592   size-weighted 0.595
+  FedAvg         0.591   size-weighted 0.594
+  Local          0.623   size-weighted 0.625
+  PersonalizedFL 0.627   size-weighted 0.620
+
+clients with >=20 test records: 2
+  Centralized    0.642
+  FedAvg         0.631
+  Local          0.578
+  PersonalizedFL 0.600
+  FedAvg-Local CI [ 0.053 -0.275  0.382] Wilcoxon p 0.5
+  Friedman p 0.145
+  pair-weighted mean FedAvg-Local over 20 clients -0.032
+  corr(|diff|, test size) -0.15
+
+time-ordered gap=0: trained 20, scored 16
+  Centralized    0.593
+  FedAvg         0.579
+  Local          0.548
+  PersonalizedFL 0.560
+  test sizes 5 39
+
+time-ordered gap=24: trained 20, scored 16
+  Centralized    0.588
+  FedAvg         0.591
+  Local          0.548
+  PersonalizedFL 0.556
+  test sizes 5 39
+
+unscored clients: ['u01', 'u24', 'u33', 'u46']
+Random hold-out restricted to the same 16 clients (seed-averaged):
+  Centralized    0.621
+  FedAvg         0.616
+  Local          0.630
+  PersonalizedFL 0.614
+  FedAvg-Local [-0.014 -0.128  0.1  ] Wilcoxon p 0.9
+  Friedman p 0.707
+  (client-seed) Centralized    0.621 ± 0.214
+  (client-seed) FedAvg         0.616 ± 0.212
+  (client-seed) Local          0.630 ± 0.258
+  (client-seed) PersonalizedFL 0.614 ± 0.255
+
+Equivalence (90% CI, TOST margin 0.05) and minimum detectable effect (80% power, alpha .05)
+  random 20    mean -0.013 90% CI [-0.090,+0.064] equiv(±0.05)=False  MDE 0.131  sd 0.199
+  random 16    mean -0.014 90% CI [-0.108,+0.080] equiv(±0.05)=False  MDE 0.160  sd 0.214
+  time-ord 16  mean +0.031 90% CI [-0.057,+0.119] equiv(±0.05)=False  MDE 0.151  sd 0.201
+
+PFL controls (random hold-out, 100 client-seed values; mean AUC)
+  FedAvg            0.615 ± 0.219
+  PFL5              0.625 ± 0.240
+  PFL25             0.616 ± 0.254
+  PFL50             0.624 ± 0.257
+  PFL150            0.625 ± 0.257
+  FedAvg+25 pooled  0.615 ± 0.223
+  FedAvg 35 rounds  0.615 ± 0.216
+  Local150          0.628 ± 0.255
+  Local175          0.629 ± 0.256
+  Wilcoxon PFL25 vs FedAvg p=0.590;  vs Local150 p=0.133
+  Wilcoxon FedAvg+25 pooled vs FedAvg p=0.878;  vs Local150 p=0.262
+  Wilcoxon FedAvg 35 rounds vs FedAvg p=0.944;  vs Local150 p=0.314
+  Wilcoxon Local175 vs FedAvg p=0.313;  vs Local150 p=0.977
+
+Convergence diagnostics
+  FedAvg test AUC rounds 1,6,10,20,30: [0.608 0.624 0.62  0.618 0.615] peak round 6
+  per-seed peak rounds: [25 19  1  4 15]  per-seed decline peak->30: [0.    0.006 0.063 0.018 0.014]
+  per-seed sd at r6, r30: [0.037 0.046]
+  Centralized (matched epochs 5..150) AUC at 5,30,50,100,150 epochs: [0.604 0.621 0.613 0.615 0.615] peak at epoch 20
+  FedAvg TRAIN AUC rounds 1,6,30: [0.641 0.653 0.657]
+  pooled training loss rounds 1,6,30: [0.6798 0.672  0.6694]
+  client drift (mean rel. dist local vs global) rounds 1,6,30: [3.993 1.631 1.155]
+  corr(FedAvg curve, centralized curve) = 0.485  max |diff| = 0.011
+  pooled training loss decreases monotonically: True
+  r6 - r30 per seed [-0.014  0.002  0.042  0.018 -0.   ]  paired t p 0.387

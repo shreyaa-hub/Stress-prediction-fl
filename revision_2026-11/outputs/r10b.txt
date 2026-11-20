@@ -1,0 +1,28 @@
+Client construction (5 seeds): Local, FedAvg, Delta, Delta range, label sigma
+  real                       L 0.611  F 0.625  D +0.014 [-0.093,+0.071]  sigma 0.231
+  random equal               L 0.538  F 0.602  D +0.064 [+0.042,+0.102]  sigma 0.076
+  random, real sizes         L 0.550  F 0.593  D +0.044 [-0.017,+0.095]  sigma 0.090
+  mixed, real sizes+labels   L 0.550  F 0.653  D +0.103 [+0.049,+0.184]  sigma 0.229
+
+Drop-one-feature ablation, random hold-out (mean AUC over 100 client-seed values)
+  all features     Local 0.628  FedAvg 0.615  Central 0.615
+  -sleep_hours     Local -0.003  FedAvg +0.004  Central +0.002
+  -dark_hours      Local -0.002  FedAvg +0.002  Central -0.002
+  -idle_hours      Local -0.005  FedAvg +0.003  Central +0.005
+  -idle_episodes   Local -0.004  FedAvg -0.018  Central -0.024
+  -conv_count      Local -0.048  FedAvg -0.041  Central -0.048
+  -conv_hours      Local -0.009  FedAvg +0.004  Central -0.002
+  -activity_level  Local +0.013  FedAvg -0.006  Central -0.011
+  -voice_ratio     Local +0.001  FedAvg +0.004  Central +0.007
+
+Single-feature local models (random hold-out): mean AUC; and |AUC-0.5| over clients
+  sleep_hours     Local 0.496  FedAvg 0.581
+  dark_hours      Local 0.498  FedAvg 0.504
+  idle_hours      Local 0.559  FedAvg 0.575
+  idle_episodes   Local 0.576  FedAvg 0.605
+  conv_count      Local 0.557  FedAvg 0.529
+  conv_hours      Local 0.580  FedAvg 0.499
+  activity_level  Local 0.555  FedAvg 0.577
+  voice_ratio     Local 0.560  FedAvg 0.482
+
+Holm thresholds: [('idle_hours', np.float64(0.005), 0.00625, np.True_), ('idle_episodes', np.float64(0.1), 0.00714, np.False_), ('conv_count', np.float64(0.12), 0.00833, np.False_)]

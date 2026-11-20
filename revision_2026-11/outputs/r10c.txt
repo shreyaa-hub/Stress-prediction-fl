@@ -1,0 +1,30 @@
+Parsed levels: {1: 974, 2: 347, 3: 266, 4: 457, 5: 123} users 48
+coverage retained, all levels: 2076 of 2167 (95.8%)
+level distribution before/after coverage (%):
+level           1     2      3      4      5
+proportion  0.449  0.16  0.123  0.211  0.057
+proportion  0.450  0.16  0.123  0.208  0.058
+per-user share of level-1 answers: median 0.47 IQR [0.33 0.54] range 0.0 1.0
+Scheme C pos rate before/after coverage 0.514 0.516
+responses (parsed) covered by the 20 clients: 1380 of 2167
+per-user retention parsed->final: median 0.51 IQR [0.45 0.66]
+coverage-dropped Scheme C rows: 52 pos rate among dropped 0.462
+corr(level-1 share, Scheme-C stressed rate) spearman [0.026 0.862]
+
+Label-scheme sensitivity
+ Scheme A: n=2076 users=48 pos=0.734 sigma=0.221 clients=29 (1614 inst)
+   RQ1 LR subj 0.520 rec 0.576 | RF subj 0.529 rec 0.655
+   RQ2 random: Cent 0.574  FedA 0.578  Loca 0.581  Pers 0.579  Friedman p 0.22  F-L CI [-0.065,+0.059]
+   RQ2 time+24h (25 scored): Cent 0.574  FedA 0.590  Loca 0.526  Pers 0.537  F-vs-L p 0.184
+ Scheme B: n=2076 users=48 pos=0.284 sigma=0.247 clients=31 (1723 inst)
+   RQ1 LR subj 0.505 rec 0.560 | RF subj 0.472 rec 0.645
+   RQ2 random: Cent 0.573  FedA 0.571  Loca 0.580  Pers 0.580  Friedman p 0.48  F-L CI [-0.072,+0.054]
+   RQ2 time+24h (28 scored): Cent 0.564  FedA 0.563  Loca 0.533  Pers 0.548  F-vs-L p 0.459
+ Scheme C: n=1141 users=47 pos=0.516 sigma=0.335 clients=20 (733 inst)
+   RQ1 LR subj 0.522 rec 0.602 | RF subj 0.485 rec 0.690
+   RQ2 random: Cent 0.615  FedA 0.615  Loca 0.628  Pers 0.616  Friedman p 0.91  F-L CI [-0.106,+0.080]
+   RQ2 time+24h (16 scored): Cent 0.588  FedA 0.591  Loca 0.548  Pers 0.556  F-vs-L p 0.463
+
+Non-linear global models (Scheme C, 1,141 instances): subject-level vs record-level AUC
+  MLP(16)  subj 0.518±0.069  rec 0.658±0.030  inflation +0.141
+  HistGB   subj 0.485±0.072  rec 0.669±0.031  inflation +0.184

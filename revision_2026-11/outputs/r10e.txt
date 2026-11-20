@@ -1,0 +1,4 @@
+overlap same16 random 0.707906976744186
+p 80 pairs 0.40063050639796904
+p 100 pairs (Table VI, random hold-out; corrected from 0.299 to 0.308) 0.3076834488797996
+p 20 clients 0.8123550415039062 PFL vs FedAvg 20 0.9854354858398438

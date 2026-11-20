@@ -1,0 +1,33 @@
+sleep EMA responses with dark data: 1242 users 49
+pooled Spearman rho -0.009 p=0.76; Pearson -0.033
+mean EMA hours 6.12 mean longest dark 5.79 median abs diff 2.39
+between-person (user means, >=5 resp, n=46) Spearman 0.107 p=0.48
+within-person (centered) Pearson -0.043 p=0.13 n=1235
+fraction where |EMA - dark| <= 2h: 0.407
+
+clients with test size >= median (10.5): 10; sizes 11-40
+  Centralized    0.552   small half 0.677
+  FedAvg         0.549   small half 0.680
+  Local          0.640   small half 0.616
+  PersonalizedFL 0.631   small half 0.602
+  big half FedAvg-Local [-0.09  -0.207  0.027] Friedman p 0.791
+  mean across-seed s.d. of a client AUC (Local): small half 0.154, big half 0.099
+  pair-weighted FedAvg-Local -0.032, cluster-bootstrap 95% CI [-0.134, 0.033]
+   pair-weighted Centralized    0.592
+   pair-weighted FedAvg         0.591
+   pair-weighted Local          0.623
+   pair-weighted PersonalizedFL 0.627
+
+MLP (8 tanh units), random hold-out, 100 client-seed values
+  Centralized    0.620 ± 0.223
+  FedAvg         0.627 ± 0.220
+  Local          0.614 ± 0.272
+  PersonalizedFL 0.624 ± 0.258
+  Friedman p 0.956  FedAvg-Local CI [ 0.013 -0.089  0.114]  Wilcoxon p 0.956
+  time-ordered+24h MLP (16 scored): Cent 0.590  FedA 0.560  Loca 0.502  Pers 0.547  F-vs-L p 0.195
+
+Night window 20:00-12:00, responses after 06:00: 1309 users 49
+  night_dark        n=1075 users=49 Spearman rho=0.036 p=0.24; within-person r=-0.043; mean 5.80 h vs EMA 6.07 h
+  night_lock        n=1198 users=49 Spearman rho=0.133 p=3.9e-06; within-person r=0.032; mean 5.86 h vs EMA 6.10 h
+  night_union       n=1226 users=49 Spearman rho=0.130 p=5e-06; within-person r=-0.001; mean 6.82 h vs EMA 6.11 h
+  night_dark_total  n=1075 users=49 Spearman rho=-0.106 p=0.00052; within-person r=-0.128; mean 8.00 h vs EMA 6.07 h
