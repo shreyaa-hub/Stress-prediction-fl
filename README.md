@@ -11,10 +11,15 @@ Code, processed data and result files for *Federated Learning for Smartphone-Bas
 | `fl_comparison.csv` | Per-client AUC for the four regimes (100 client × seed rows, cell 11) |
 | `personal_results.csv` | Fully personalised model results (cell 10) |
 | `fedavg_curve.npy` | FedAvg held-out AUC per seed × round (cell 11) |
+| `revision_2026-11/` | Analyses added for the ICICNCT 2026 revision (R10): label-scheme sensitivity, non-linear models, test-size weighting, same-16-client comparison, TOST/power, client-construction arms, convergence diagnostics, PFL controls, feature ablation, sleep-proxy validation. See its README. |
+| `central_curve.npy` | Centralized AUC after every 5 epochs (5 seeds × 30), dashed line in the revised Fig. 3 (written by `revision_2026-11/r10a_*.py`) |
 | `requirements.txt` | Library versions under which all outputs reproduce exactly |
 
 ## Data
 StudentLife (Wang et al., UbiComp 2014), loaded from the public Kaggle mirror `dartweichen/student-life`. Sensor inference codes follow the official documentation (https://studentlife.cs.dartmouth.edu/dataset.html): activity 0 stationary, 1 walking, 2 running, 3 unknown; audio 0 silence, 1 voice, 2 noise, 3 unknown.
 
 ## Reproducing
-Cells 3–7 need the raw StudentLife files. Cells 8–12 and R1–R9 run from `features.csv` / `labels.csv` alone (place them in `/kaggle/working/` or change the paths). Use the pinned versions: with scikit-learn ≥ 1.8 the subject-level AUCs of cell 8 become 0.519 (LR) and 0.480 (RF) instead of 0.522 and 0.485.
+Cells 3–7 need the raw StudentLife files. Cells 8–12, R1–R9 and the `revision_2026-11/` scripts run from `features.csv` / `labels.csv` alone (place them in `/kaggle/working/` or change the paths). Use the pinned versions: with scikit-learn ≥ 1.8 the subject-level AUCs of cell 8 become 0.519 (LR) and 0.480 (RF) instead of 0.522 and 0.485.
+
+## Revision note (Nov 2026)
+In the revised paper the feature column `sleep_hours` is called **longest dark**: the StudentLife `dark` stream records phone-in-dark-environment episodes (light sensor, ≥1 h), and the feature does not track self-reported sleep. The random hold-out FedAvg-vs-local Wilcoxon p-value is 0.308 (cell R3 output); the earlier paper version printed 0.299 in error.
